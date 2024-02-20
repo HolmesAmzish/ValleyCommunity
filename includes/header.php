@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(isset($_SESSION['username'])) {
+  $username = $_SESSION['username'];
+  $welcomeMessage = "您好，$username！";
+  $displayButtons = 'style="display: none;"';
+} else {
+  $welcomeMessage = "";
+  $displayButtons = '';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +45,21 @@
       <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
     </a>
   </div>
-
-  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 zh">
+  <ul class="nav zh">
     <li><a href="#" class="nav-link px-2 link-secondary">主页</a></li>
     <li><a href="#" class="nav-link px-2">社区</a></li>
     <li><a href="#" class="nav-link px-2">关于</a></li>
   </ul>
-
   <div class="col-md-3 text-end zh">
-    <button type="button" class="btn btn-outline-primary me-2">登录</button>
-    <button type="button" class="btn btn-primary">注册</button>
+    <?php if($welcomeMessage): ?>
+        <span><?php echo $welcomeMessage; ?></span>
+        <button type="button" class="btn btn-outline-primary ms-2">登出</button>
+    <?php else: ?>
+      <button type="button" class="btn btn-outline-primary me-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/login.html';">登录</button>
+        <button type="button" class="btn btn-primary" <?php echo $displayButtons; ?>>注册</button>
+    <?php endif; ?>
   </div>
 </header>
-
-<!-- Your content here -->
-
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/css@3"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
