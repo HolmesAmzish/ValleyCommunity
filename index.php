@@ -23,38 +23,12 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">网站名称</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">主页<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">关于</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">联系</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">注册</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">登录</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php include("assets/header.html");?>
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
-    <h1 class="display-4">欢迎来到我们的网站</h1>
-    <p class="lead">这是一个简单的网站主页示例，使用了Bootstrap框架。</p>
+    <h1 class="display-4">Valley</h1>
+    <p class="lead">江苏大学同性交友平台</p>
   </div>
 </div>
 
@@ -94,11 +68,7 @@
   </div>
 </div>
 
-<footer class="footer mt-auto py-3 bg-dark text-white">
-  <div class="container text-center">
-    <span>版权所有 &copy; 2024 网站名称</span>
-  </div>
-</footer>
+<?php include("assets/footer.html");?>
 
 <!-- Bootstrap JavaScript 和 jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
