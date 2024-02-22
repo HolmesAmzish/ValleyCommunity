@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="#171a21">
     <title>Steam 社区 :: 讨论</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-
-
     <link
         href="https://community.cloudflare.steamstatic.com/public/shared/css/motiva_sans.css?v=GfSjbGKcNYaQ&amp;l=schinese&amp;_cdn=cloudflare"
         rel="stylesheet" type="text/css">
@@ -120,7 +116,7 @@
 </head>
 
 <body class="pagecontent discussions_page  responsive_page ">
-
+<?php include("../includes/header.php");?>
 
     <div class="responsive_page_frame with_header">
         <div role="navigation" class="responsive_page_menu_ctn mainmenu" aria-label="手机菜单">

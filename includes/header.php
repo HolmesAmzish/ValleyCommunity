@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['username'])) {
   $username = $_SESSION['username'];
-  $welcomeMessage = "您好，$username！";
+  $welcomeMessage = "您好，$username!";
   $displayButtons = 'style="display: none;"';
 } else {
   $welcomeMessage = "";
@@ -53,10 +53,10 @@ if(isset($_SESSION['username'])) {
   <div class="col-md-3 text-end zh">
     <?php if($welcomeMessage): ?>
         <span><?php echo $welcomeMessage; ?></span>
-        <button type="button" class="btn btn-outline-primary ms-2">登出</button>
+        <button type="button" class="btn btn-outline-primary ms-2" onclick="window.location.href='../scripts/logout.php'">登出</button>
     <?php else: ?>
-      <button type="button" class="btn btn-outline-primary me-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/login.html';">登录</button>
-        <button type="button" class="btn btn-primary" <?php echo $displayButtons; ?>>注册</button>
+      <button type="button" class="btn btn-outline-primary me-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/Login.php';">登录</button>
+        <button type="button" class="btn btn-primary mr-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/Register.php';">注册</button>
     <?php endif; ?>
   </div>
 </header>
