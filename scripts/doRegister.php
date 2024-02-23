@@ -14,7 +14,7 @@ $stmt->execute();
 $result = $stmt->affected_rows;
 
 if ($result == 1) {
-    echo "注册成功";
+    header("location:../pages/login.php");
     exit;
 } else {
     echo "注册失败";
