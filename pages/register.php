@@ -44,7 +44,7 @@
         <div class="card-body">
             <h4 class="card-title">用户注册</h4>
             <p class="card-description">基本信息</p>
-            <form class="forms-sample" action="/pages/doRegister.php" method="post">
+            <form class="forms-sample" action="/scripts/doRegister.php" method="post">
                 <div class="form-group">
                     <label for="exampleInputUsername1">用户名</label>
                     <input type="text" class="form-control" id="exampleInputUsername1" name="username" required>
