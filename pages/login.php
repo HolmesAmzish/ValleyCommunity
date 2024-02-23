@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Form with Bootstrap</title>
+    <title>登录-Valley</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <style>
         .centered-form {
@@ -40,7 +40,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">用户登录</h4>
-            <form class="forms-sample" method="post" action="doLogin.php">
+            <form class="profile-form" method="post" action="/scripts/doLogin.php">
                 <div class="form-group">
                     <label for="exampleInputUsername1">用户名</label>
                     <input type="text" class="form-control" id="exampleInputUsername1" name="username">
@@ -52,7 +52,7 @@
                 <button type="submit" class="btn btn-primary mr-2">提交</button>
                 <button class="btn btn-light" type="reset">重置</button>
                 <div style="height: 10px;"></div>
-                <p>没有账号？<a href="Register.php">注册</a></p>
+                <p>没有账号？<a href="register.php">注册</a></p>
             </form>
         </div>
     </div>

@@ -30,13 +30,6 @@
   </div>
 </div>
 
-<div class="container">
-  <h2 class="text-center">列表</h2>
-  <div class="row">
-  
-  </div>
-</div>
-
 <?php include("includes/footer.html");?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
