@@ -41,6 +41,7 @@
         <div class="card-body">
             <h4 class="card-title">用户登录</h4>
             <form class="profile-form" method="post" action="/scripts/doLogin.php">
+                
                 <div class="form-group">
                     <label for="exampleInputUsername1">用户名</label>
                     <input type="text" class="form-control" id="exampleInputUsername1" name="username">

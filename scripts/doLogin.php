@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 设置会话变量存储错误消息
-    $_SESSION['error_message'] = "用户名或密码错误";
-    header("location:../pages/Login.php");
+    $_SESSION['loginError'] = "用户名或密码错误";
+    header("location:../pages/login.php");
     exit;
 }
 ?>
