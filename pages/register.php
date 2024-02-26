@@ -31,6 +31,7 @@
         .card {
             max-width: 400px;
             width: 100%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
         .btn-cancel {
             margin-bottom: 10px;
