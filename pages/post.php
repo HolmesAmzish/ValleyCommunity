@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<?php
+if (isset($_SESSION['username'])) {
+    header("community.php");
+    $_SESSION['post_error'] = "你必须先登录";
+}
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,14 +34,14 @@
         <h2>发布新帖子</h2>
         <div class="row mt-3">
             <div class="col-md-8">
-                <form class="post-form">
+                <form class="post-form" action="../scripts/doPost.php" method="post">
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">标题</label>
-                        <input type="text" class="form-control" id="postTitle" placeholder="输入帖子标题">
+                        <input type="text" class="form-control" name="title" placeholder="输入帖子标题">
                     </div>
                     <div class="mb-3">
                         <label for="postContent" class="form-label">内容</label>
-                        <textarea class="form-control" id="postContent" rows="5" placeholder="输入帖子内容"></textarea>
+                        <textarea class="form-control" name="content" rows="5" placeholder="输入帖子内容"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">发布</button>
                 </form>

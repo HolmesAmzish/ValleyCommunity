@@ -65,11 +65,15 @@
                     <div class="col-md-12">
                         <ul class="list-group">
                             <!-- 示例帖子 -->
-                            <?php while ($row = $result->fetch_assoc()) { ?>
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <?php
+                            require("../scripts/timespan.php");
+                            while ($row = $result->fetch_assoc()) {
+                                $time_span = time_span($row['creation_date']);
+                            ?>
+                            <a href="post_single.php?id=<?php echo $row['post_id']; ?>" class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $row['title']; ?></h5>
-                                    <small>3 days ago</small>
+                                    <small><?php echo $time_span; ?></small>
                                 </div>
                                 <p class="mb-1"><?php echo (strlen($row['content']) > 100) ? substr($row['content'], 0, 100) . '...' : $row['content']; ?></p>
                                 <small>By <?php echo $row['author']; ?></small>

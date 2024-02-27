@@ -56,11 +56,15 @@
                 <!-- 最新讨论列表 -->
                 <h3 class="mt-5">最新板块</h3>
                 <div class="list-group mt-3">
-                    <?php while ($row = $result->fetch_assoc()) { ?>
+                    <?php
+                    require("../scripts/timespan.php");
+                    while ($row = $result->fetch_assoc()) {
+                    $time_span = time_span($row['creation_date']);
+                    ?>
                     <a href="post_single.php?id=<?php echo $row['post_id']; ?>" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><?php echo $row['title']; ?></h5>
-                            <small>3 days ago</small>
+                            <small><?php echo $time_span ?></small>
                         </div>
                         <p class="mb-1"><?php echo (strlen($row['content']) > 100) ? substr($row['content'], 0, 100) . '...' : $row['content']; ?></p>
                         <small>By <?php echo $row['author']; ?></small>
