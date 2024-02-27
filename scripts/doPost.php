@@ -12,11 +12,11 @@ $sql = "INSERT INTO posts (title, content, author)
 $result = $conn->query($sql);
 if ($result) {
     $post_id = $conn->insert_id;
-    header("../pages/post_single.php?id=$post_id");
+    header("location:../pages/post_single.php?id=$post_id");
     $_SESSION['post_msg'] = "发送成功";
     exit;
 } else {
-    header("../pages/post.php");
+    header("location:../pages/post.php");
     $_SESSION['post_error'] = "发送失败";
     exit;
 }
