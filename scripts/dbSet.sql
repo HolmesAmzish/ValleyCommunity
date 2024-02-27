@@ -1,71 +1,90 @@
-CREATE USER 'valley'@'localhost' IDENTIFIED BY '9*Z[Z]?z9zZo=+eQ';
+-- MariaDB dump 10.19  Distrib 10.6.16-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: valley
+-- ------------------------------------------------------
+-- Server version	10.6.16-MariaDB-0ubuntu0.22.04.1
 
--- Set up database
-CREATE DATABASE IF NOT EXISTS valley;
-GRANT ALL PRIVILEGES ON valley.* TO 'valley'@'localhost';
-FLUSH PRIVILEGES;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-USE valley
+--
+-- Table structure for table `admins`
+--
 
--- Admins
-CREATE TABLE admins (
-    admin_id INT AUTO_INCREMENT PRIMARY KEY,
-    admin_name VARCHAR(50) NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    lastLogin TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+DROP TABLE IF EXISTS `admins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admins` (
+  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_name` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `lastLogin` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Create admin account
-INSERT INTO admins (admin_name, password)
-VALUES ('Nulla', 'admin');
+--
+-- Table structure for table `posts`
+--
 
--- Users
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(20),
-    gender ENUM('male', 'female'),
-    province VARCHAR(50),
-    city VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+DROP TABLE IF EXISTS `posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `posts` (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `author` varchar(100) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_modified_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `category` varchar(50) DEFAULT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `likes` int(11) DEFAULT 0,
+  `comments` int(11) DEFAULT 0,
+  `province` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`post_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Create an account
-INSERT INTO users (username, password, email, phone_number, gender, province, city)
-VALUES ('Nulla', '123', 'HolmesAmzish86@outlook.com', '', 'male', 'Jiangsu', 'Changzhou');
+--
+-- Table structure for table `users`
+--
 
--- Posts
-CREATE TABLE posts (
-    post_id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
-    content TEXT,
-    author VARCHAR(100),
-    author_id INT,
-    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    category VARCHAR(50),
-    tags VARCHAR(255),
-    likes INT DEFAULT 0,
-    comments INT DEFAULT 0,
-    province VARCHAR(50),
-    city VARCHAR(50)
-);
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
+  `province` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
--- Insert five rows
-INSERT INTO posts (title, content, author, author_id, category, tags, province, city)
-VALUES ('Introduction to SQL', 'SQL (Structured Query Language) is a standard language for accessing and manipulating databases. It is widely used in various applications, from simple web development to complex data analysis tasks. Learning SQL is essential for anyone interested in working with databases.', 'John Doe', 1, 'Technology', 'SQL, Database', 'California', 'Los Angeles');
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO posts (title, content, author, author_id, category, tags, province, city)
-VALUES ('The Art of Cooking', 'Are you passionate about cooking? Do you want to learn new recipes and techniques to impress your friends and family? Then you have come to the right place! In this post, we will explore the art of cooking and share some amazing recipes that you can try at home.', 'Jane Smith', 2, 'Food', 'Cooking, Recipes', 'New York', 'New York');
-
-INSERT INTO posts (title, content, author, author_id, category, tags, province, city)
-VALUES ('Travel Guide: Paris', 'Paris, the city of love and lights, is a dream destination for many travelers. Whether you are planning a romantic getaway or a solo adventure, our comprehensive travel guide will help you make the most of your trip to this enchanting city. From iconic landmarks to hidden gems, we have got you covered!', 'Emily Johnson', 3, 'Travel', 'Paris, Travel Guide', 'Paris', 'Paris');
-
-INSERT INTO posts (title, content, author, author_id, category, tags, province, city)
-VALUES ('Fitness Tips for Beginners', 'Starting a fitness journey can be intimidating, but with the right guidance and motivation, anyone can achieve their health and wellness goals. In this post, we will share some practical tips and advice for beginners who are looking to improve their fitness levels and lead a healthier lifestyle. From setting realistic goals to finding enjoyable workout routines, we have got you covered every step of the way!', 'Michael Brown', 4, 'Fitness', 'Fitness, Exercise', 'Texas', 'Houston');
-
-INSERT INTO posts (title, content, author, author_id, category, tags, province, city)
-VALUES ('The Benefits of Meditation', 'In today''s fast-paced world, finding moments of peace and tranquility can be challenging. However, meditation offers a simple yet powerful solution to quiet the mind and find inner calm. In this post, we will explore the numerous benefits of meditation for your mental and physical well-being. From reducing stress and anxiety to improving focus and clarity, incorporating meditation into your daily routine can have profound effects on your overall health and happiness.', 'Sarah Wilson', 5, 'Health', 'Meditation, Wellness', 'California', 'San Francisco');
+-- Dump completed on 2024-02-27 23:16:46
