@@ -21,12 +21,10 @@ if (isset($_COOKIE['AdminName'])) {
         body {
             height: 100%;
         }
-
         .form-signin {
             max-width: 330px;
             padding: 1rem;
         }
-
         .form-signin .form-floating:focus-within {
             z-index: 2;
         }

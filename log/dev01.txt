@@ -1,3 +1,16 @@
+2024.2.27
+1. 修改SQL数据库结构和导出导入
+mysqldump -u root -p --no-data valley > dbSet.sql
+mysql -u root -p valley < dbSet.sql
+2. 重构dev02分支
+
+2024.2.26
+1. 修改主页动态代码
+2. 创建帖子页面
+
+2024.2.23
+1. TRUNCATE TABLE 表名;
+
 2024.2.22
 1. 创建dev01。
 2. 修改用户注册和登录页面
