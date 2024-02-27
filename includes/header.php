@@ -2,10 +2,8 @@
 session_start();
 if(isset($_SESSION['username'])) {
   $username = $_SESSION['username'];
-  $welcomeMessage = "您好，$username！";
   $displayButtons = 'style="display: none;"';
 } else {
-  $welcomeMessage = "";
   $displayButtons = '';
 }
 ?>
@@ -13,7 +11,7 @@ if(isset($_SESSION['username'])) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=2.0">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>
   .bd-placeholder-img {
@@ -46,17 +44,17 @@ if(isset($_SESSION['username'])) {
     </a>
   </div>
   <ul class="nav zh">
-    <li><a href="#" class="nav-link px-2 link-secondary">主页</a></li>
-    <li><a href="#" class="nav-link px-2">社区</a></li>
-    <li><a href="#" class="nav-link px-2">关于</a></li>
+    <li><a href="/pages/home.php" class="nav-link px-2 link-secondary">主页</a></li>
+    <li><a href="/pages/community.php" class="nav-link px-2">社区</a></li>
+    <li><a href="/pages/about.php" class="nav-link px-2">关于</a></li>
   </ul>
   <div class="col-md-3 text-end zh">
-    <?php if($welcomeMessage): ?>
-        <span><?php echo $welcomeMessage; ?></span>
-        <button type="button" class="btn btn-outline-primary ms-2">登出</button>
+    <?php if(isset($username)): ?>
+        <span><?php echo "你好，<a href='/pages/profile.php'>$username</a>"; ?></span>
+        <button type="button" class="btn btn-outline-primary ms-2" onclick="window.location.href='../scripts/logout.php'">登出</button>
     <?php else: ?>
-      <button type="button" class="btn btn-outline-primary me-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/login.html';">登录</button>
-        <button type="button" class="btn btn-primary" <?php echo $displayButtons; ?>>注册</button>
+      <button type="button" class="btn btn-outline-primary me-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/login.php';">登录</button>
+        <button type="button" class="btn btn-primary mr-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/register.php';">注册</button>
     <?php endif; ?>
   </div>
 </header>
