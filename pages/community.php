@@ -38,7 +38,7 @@
     include("../includes/header.php");
     require_once("../scripts/dbConnect.php");
     $conn = dbConnect();
-    $sql = "SELECT * FROM posts";
+    $sql = "SELECT * FROM posts ORDER BY creation_date DESC";
     $result = $conn->query($sql);
     ?>
 
