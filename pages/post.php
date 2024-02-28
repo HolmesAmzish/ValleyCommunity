@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html>
-<?php
-if (isset($_SESSION['username'])) {
-    header("community.php");
-    $_SESSION['post_error'] = "你必须先登录";
-}
-?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,8 +22,13 @@ if (isset($_SESSION['username'])) {
     </style>
 </head>
 <body>
-    <?php include("../includes/header.php"); ?>
-
+    <?php include("../includes/header.php");
+    if (!isset($_SESSION['username'])) {
+        header("Location: community.php");
+        $_SESSION['msg'] = "你必须先登录";
+        exit;
+}
+?>
     <div class="container mt-5">
         <h2>发布新帖子</h2>
         <div class="row mt-3">

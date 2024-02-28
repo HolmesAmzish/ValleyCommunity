@@ -43,6 +43,12 @@
     ?>
 
     <div class="container mt-5">
+        <?php if (isset($_SESSION['msg'])) { ?>
+            <div class="alert alert-dismissible fade show" role="alert">
+            <?php echo $_SESSION['msg']; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
         <div class="row">
             <div class="col-md-8">
                 <h2>社区</h2>

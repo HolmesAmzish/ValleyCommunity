@@ -15,10 +15,11 @@ $result = $stmt->affected_rows;
 
 if ($result == 1) {
     header("location:../pages/login.php");
+    $_SESSION['msg'] = "注册成功，请登录。";
     exit;
 } else {
-    echo "注册失败";
+    header("location:../pages/register.php");
+    $_SESSION['msg'] = "注册失败。";
     exit;
 }
-
 ?>
