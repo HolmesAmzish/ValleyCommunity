@@ -11,7 +11,7 @@ if(isset($_SESSION['username'])) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>
   .bd-placeholder-img {
@@ -34,10 +34,20 @@ if(isset($_SESSION['username'])) {
     font-weight: bolder;
     font-size: larger;
   }
+  .container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .col-md-3.text-end.zh {
+    text-align: center; /* 对齐到中心 */
+    margin-top: 10px; /* 设置上边距 */
+  }
 </style>
 </head>
 <body>
-<header class="container d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
+<header class="container-header container py-3 mb-4 border-bottom">
   <div class="col-md-3 mb-2 mb-md-0">
     <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
       <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>

@@ -12,6 +12,9 @@
             color: #000; 
             background-color: #fff; 
         }
+        .card {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
         .form-label {
             color: #fff;
         }
@@ -31,9 +34,21 @@
     </style>
 </head>
 <body>
-    <?php include("../includes/header.php"); ?>
+    <?php 
+    include("../includes/header.php");
+    require_once("../scripts/dbConnect.php");
+    $conn = dbConnect();
+    $sql = "SELECT * FROM posts ORDER BY creation_date DESC";
+    $result = $conn->query($sql);
+    ?>
 
     <div class="container mt-5">
+        <?php if (isset($_SESSION['msg'])) { ?>
+            <div class="alert alert-dismissible fade show" role="alert">
+            <?php echo $_SESSION['msg']; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
         <div class="row">
             <div class="col-md-8">
                 <h2>社区</h2>
@@ -56,14 +71,20 @@
                     <div class="col-md-12">
                         <ul class="list-group">
                             <!-- 示例帖子 -->
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <?php
+                            require("../scripts/timespan.php");
+                            while ($row = $result->fetch_assoc()) {
+                                $time_span = time_span($row['creation_date']);
+                            ?>
+                            <a href="post_single.php?id=<?php echo $row['post_id']; ?>" class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Discussion Title 1</h5>
-                                    <small>5 days ago</small>
+                                    <h5 class="mb-1"><?php echo $row['title']; ?></h5>
+                                    <small><?php echo $time_span; ?></small>
                                 </div>
-                                <p class="mb-1">Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
-                                <small>By User456</small>
+                                <p class="mb-1"><?php echo (strlen($row['content']) > 100) ? substr($row['content'], 0, 100) . '...' : $row['content']; ?></p>
+                                <small>By <?php echo $row['author']; ?></small>
                             </a>
+                            <?php } ?>
                             <!-- 其他帖子 -->
                         </ul>
                     </div>

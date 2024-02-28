@@ -7,14 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM Users WHERE Username=?");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        $hashedPassword = $row['Password'];
+        $hashedPassword = $row['password'];
 
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['username'] = $username;
@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 设置会话变量存储错误消息
-    $_SESSION['error_message'] = "用户名或密码错误";
-    header("location:../pages/Login.php");
+    $_SESSION['login_error'] = "用户名或密码错误";
+    header("location:../pages/login.php");
     exit;
 }
 ?>

@@ -1,3 +1,6 @@
+2024.2.23
+1. 删除了dev02分支，服务器目前直接运行develop分支的文件。
+
 2024.2.22
 1. 创建dev01和dev02分支
 2. dev01位于Purgatory，dev02位于Inferno II，dev02用于其他成员开发和修改。

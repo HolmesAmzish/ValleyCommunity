@@ -8,17 +8,18 @@ $password = $_POST['password'];
 $email = $_POST['email'];
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$stmt = $conn->prepare("INSERT INTO Users (Username, Password, Email) VALUES (?, ?, ?);");
+$stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?);");
 $stmt->bind_param("sss", $username, $hashedPassword, $email);
 $stmt->execute();
 $result = $stmt->affected_rows;
 
 if ($result == 1) {
-    echo "注册成功";
+    header("location:../pages/login.php");
+    $_SESSION['msg'] = "注册成功，请登录。";
     exit;
 } else {
-    echo "注册失败";
+    header("location:../pages/register.php");
+    $_SESSION['msg'] = "注册失败。";
     exit;
 }
-
 ?>

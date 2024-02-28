@@ -11,6 +11,9 @@
             color: #fff; /* 设置文本颜色为白色 */
             background-color: #000; /* 设置背景颜色为黑色 */
         }
+        .card {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
         .profile-form {
             background-color: #000; /* 设置背景颜色为黑色 */
             padding: 20px;
@@ -35,7 +38,13 @@
     </style>
 </head>
 <body>
-    <?php include("../includes/header.php"); ?>
+    <?php 
+    include("../includes/header.php");
+    require_once("../scripts/dbConnect.php");
+    $conn = dbConnect();
+    $sql = "SELECT * FROM posts ORDER BY creation_date DESC LIMIT 3";
+    $result = $conn->query($sql);
+    ?>
 
     <div class="container mt-5">
         <div class="row">
@@ -47,31 +56,20 @@
                 <!-- 最新讨论列表 -->
                 <h3 class="mt-5">最新板块</h3>
                 <div class="list-group mt-3">
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <?php
+                    require("../scripts/timespan.php");
+                    while ($row = $result->fetch_assoc()) {
+                    $time_span = time_span($row['creation_date']);
+                    ?>
+                    <a href="post_single.php?id=<?php echo $row['post_id']; ?>" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Discussion Title 1</h5>
-                            <small>3 days ago</small>
+                            <h5 class="mb-1"><?php echo $row['title']; ?></h5>
+                            <small><?php echo $time_span ?></small>
                         </div>
-                        <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                        <small>By User123</small>
+                        <p class="mb-1"><?php echo (strlen($row['content']) > 100) ? substr($row['content'], 0, 100) . '...' : $row['content']; ?></p>
+                        <small>By <?php echo $row['author']; ?></small>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Discussion Title 2</h5>
-                            <small>5 days ago</small>
-                        </div>
-                        <p class="mb-1">Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
-                        <small>By User456</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Discussion Title 3</h5>
-                            <small>1 week ago</small>
-                        </div>
-                        <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-                        <small>By User789</small>
-                    </a>
-                    <!-- 更多讨论列表项 -->
+                    <?php } ?>
                 </div>
             </div>
             <div class="col-md-4">
