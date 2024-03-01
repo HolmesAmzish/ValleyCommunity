@@ -57,7 +57,7 @@
                         <!-- 评论列表 -->
                         <ul class="list-group">
                             <?php
-                            $sql_comment = "SELECT * FROM comments WHERE post_id";
+                            $sql_comment = "SELECT * FROM comments WHERE post_id=$post_id";
                             $result_comments = $conn->query($sql_comment);
                             while ($row_comment = $result_comments->fetch_assoc()) {
                                 $comment_date = strtotime($row_comment['comment_date']);

@@ -3,9 +3,9 @@ session_start();
 require_once("../scripts/dbConnect.php");
 $conn = dbConnect();
 
-// 获取评论内容和相关的帖子ID
+
 $content = $_POST['comment'];
-$post_id = $_POST['post_id']; // 通过GET方法获取帖子ID
+$post_id = $_POST['post_id'];
 $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 
