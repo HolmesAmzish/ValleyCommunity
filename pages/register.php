@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="exampleInputUsername1">用户名</label>
                     <input type="text" class="form-control" id="username" name="username" required onblur="checkuser()">
-                    <div id="usernameMessage"></div> <!-- 用户名重复信息框 -->
+                    <div id="usernameMessage"></div> <!-- 用户名重复 -->
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">邮箱</label>
@@ -61,8 +61,15 @@
                 <div class="form-group">
                     <label for="exampleInputConfirmPassword1">确认密码</label>
                     <input type="password" class="form-control" id="password_confirm" name="password_confirm" required oninput="checkPassword()">
-                    <div id="passwordMessage"></div> <!-- 密码一致性信息框 -->
+                    <div id="passwordMessage"></div> <!-- 密码一致性 -->
                 </div>
+                <!-- 显示提示信息 -->
+                <?php if (isset($_GET['msg'])) { ?>
+                    <div class="alert alert-dismissible fade show" role="alert">
+                        <?php echo $_GET['msg']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
                 <button type="submit" class="btn btn-primary mr-2" id="submitBtn">提交</button>
                 <button class="btn btn-light" type="reset">重置</button>
                 <div style="height: 10px;"></div>

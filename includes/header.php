@@ -41,8 +41,8 @@ if(isset($_SESSION['username'])) {
     flex-wrap: wrap;
   }
   .col-md-3.text-end.zh {
-    text-align: center; /* 对齐到中心 */
-    margin-top: 10px; /* 设置上边距 */
+    text-align: center;
+    margin-top: 10px;
   }
 </style>
 </head>

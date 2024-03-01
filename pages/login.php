@@ -40,9 +40,16 @@
 <div class="centered-form">
     <div class="card">
         <div class="card-body">
+
             <h4 class="card-title">用户登录</h4>
             <form class="profile-form" method="post" action="/scripts/doLogin.php">
-                
+                <!-- 显示提示信息 -->
+                <?php if (isset($_GET['msg'])) { ?>
+                    <div class="alert alert-dismissible fade show" role="alert">
+                        <?php echo $_GET['msg']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
                 <div class="form-group">
                     <label for="exampleInputUsername1">用户名</label>
                     <input type="text" class="form-control" id="exampleInputUsername1" name="username">
@@ -51,6 +58,7 @@
                     <label for="exampleInputPassword1">密码</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                 </div>
+
                 <button type="submit" class="btn btn-primary mr-2">提交</button>
                 <button class="btn btn-light" type="reset">重置</button>
                 <div style="height: 10px;"></div>
@@ -60,4 +68,5 @@
     </div>
 </div>
 </body>
+<script src="/assets/js/bootstrap.min.js"></script>
 </html>

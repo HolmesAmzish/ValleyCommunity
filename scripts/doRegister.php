@@ -14,12 +14,12 @@ $stmt->execute();
 $result = $stmt->affected_rows;
 
 if ($result == 1) {
-    header("location:../pages/login.php");
-    $_SESSION['msg'] = "注册成功，请登录。";
+    $register_msg = "注册成功，请登录。";
+    header("location:../pages/login.php?msg=$register_msg");
     exit;
 } else {
-    header("location:../pages/register.php");
-    $_SESSION['msg'] = "注册失败。";
+    $register_error = "注册失败，执行错误。";
+    header("location:../pages/register.php?msg=$register_error");
     exit;
 }
 ?>

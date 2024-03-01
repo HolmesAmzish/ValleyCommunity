@@ -1,20 +1,20 @@
 <?php
-require("../script/dbConnect.php");
+require("../scripts/dbConnect.php");
 session_start();
 $conn = dbConnect();
-$username = $_POST['username'];
+$admin_name = $_POST['username'];
 $password = $_POST['password'];
 
-$stmt = $conn->prepare("SELECT * FROM Admins WHERE AdminName=?");
-$stmt->bind_param("s", $username);
-$stmt->executed();
+$stmt = $conn->prepare("SELECT * FROM admins WHERE admin_name=?");
+$stmt->bind_param("s", $admin_name);
+$stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows == 1) {
     $row = $result->fetch_assoc();
     $hashedPassword = $row['password'];
     if (password_verify($password, $hashedPassword)) {
-        $_SESSION['AdminName'] = $username;
+        $_SESSION['admin_name'] = $admin_name;
         header("location: dashboard.php");
         exit;
     }

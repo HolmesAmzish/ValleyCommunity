@@ -69,3 +69,20 @@ VALUES ('Fitness Tips for Beginners', 'Starting a fitness journey can be intimid
 
 INSERT INTO posts (title, content, author, author_id, category, tags, province, city)
 VALUES ('The Benefits of Meditation', 'In today''s fast-paced world, finding moments of peace and tranquility can be challenging. However, meditation offers a simple yet powerful solution to quiet the mind and find inner calm. In this post, we will explore the numerous benefits of meditation for your mental and physical well-being. From reducing stress and anxiety to improving focus and clarity, incorporating meditation into your daily routine can have profound effects on your overall health and happiness.', 'Sarah Wilson', 5, 'Health', 'Meditation, Wellness', 'California', 'San Francisco');
+
+-- Table structure for table `comments`
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE `comments` (
+    `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+    `post_id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `username` varchar(50) NOT NULL,
+    `comment_content` text NOT NULL,
+    `comment_date` timestamp NOT NULL DEFAULT current_timestamp(),
+    `likes` int(11) NOT NULL DEFAULT 0,
+    PRIMARY KEY (`comment_id`),
+    KEY `fk_post_id` (`post_id`),
+    KEY `fk_user_id` (`user_id`),
+    CONSTRAINT `fk_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+)   ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

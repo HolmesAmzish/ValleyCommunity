@@ -18,14 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['username'] = $username;
+            $_SESSION['user_id'] = $row['user_id'];
             header("location:../pages/home.php");
             exit;
         }
     }
 
     // 设置会话变量存储错误消息
-    $_SESSION['login_error'] = "用户名或密码错误";
-    header("location:../pages/login.php");
+    $login_error = "用户名或密码错误";
+    header("location:../pages/login.php?msg=$login_error");
     exit;
 }
 ?>
