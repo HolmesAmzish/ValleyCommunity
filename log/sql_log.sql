@@ -20,7 +20,7 @@ CREATE TABLE admins (
 INSERT INTO admins (admin_name, password)
 VALUES ('Nulla', 'admin');
 
--- Users
+-- users
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
@@ -32,6 +32,10 @@ CREATE TABLE users (
     city VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- add bio
+ALTER TABLE users
+ADD bio TEXT;
 
 -- Create an account
 INSERT INTO users (username, password, email, phone_number, gender, province, city)

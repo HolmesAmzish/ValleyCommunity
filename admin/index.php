@@ -45,7 +45,7 @@
                 
                 <div class="form-group">
                     <label for="username">用户名</label>
-                    <input type="text" class="form-control" id="exampleInputUsername1" name="admins">
+                    <input type="text" class="form-control" id="exampleInputUsername1" name="admin_name">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">密码</label>

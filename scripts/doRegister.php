@@ -22,4 +22,6 @@ if ($result == 1) {
     header("location:../pages/register.php?msg=$register_error");
     exit;
 }
+$conn->close();
+$stmt->close();
 ?>

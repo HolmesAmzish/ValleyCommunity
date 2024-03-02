@@ -24,12 +24,17 @@
 <body>
     <?php include("../includes/header.php");
     if (!isset($_SESSION['username'])) {
-        header("Location: community.php");
-        $_SESSION['msg'] = "你必须先登录";
+        $post_error = "你必须先登录。";
+        header("Location: community.php?msg=$post_error");
         exit;
-}
-?>
+    } ?>
     <div class="container mt-5">
+        <?php if (isset($_GET['msg'])) { ?>
+            <div class="alert alert-dismissible fade show" role="alert">
+                <?php echo $_GET['msg']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
         <h2>发布新帖子</h2>
         <div class="row mt-3">
             <div class="col-md-8">
@@ -49,5 +54,6 @@
     </div>
 
     <?php include("../includes/footer.html"); ?>
+    <script src="/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

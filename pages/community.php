@@ -44,9 +44,9 @@
 
     <div class="container mt-5">
         <!-- 显示信息 -->
-        <?php if (isset($_SESSION['msg'])) { ?>
+        <?php if (isset($_GET['msg'])) { ?>
             <div class="alert alert-dismissible fade show" role="alert">
-                <?php echo $_SESSION['msg']; ?>
+                <?php echo $_GET['msg']; ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php } ?>
