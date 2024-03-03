@@ -23,44 +23,82 @@
     </style>
 </head>
 <body>
-    <?php include("../includes/header.php"); ?>
+    <?php
+    include("../includes/header.php");
+    require_once("../scripts/dbConnect.php");
+    if (!isset($_SESSION['user_id'])) {
+        header("location:login.php");
+        exit;
+    }
+    $conn = dbConnect();
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT * FROM users WHERE user_id=$user_id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    ?>
 
     <div class="container mt-5">
+        <?php if (isset($_GET['msg'])) { ?>
+            <div class="alert alert-dismissible fade show" role="alert">
+                <?php echo $_GET['msg']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
         <h2>用户信息</h2>
         <div class="row mt-3">
             <div class="col-md-6">
                 <form class="profile-form form-sample">
                     <div class="mb-3">
                         <label for="fullname" class="form-label">用户ID</label>
-                        <input type="text" class="form-control" id="UserID" value="UserID">
+                        <input type="text" class="form-control" id="UserID" value="<?php echo $row['user_id']; ?>" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">用户名</label>
-                        <input type="text" class="form-control" id="username" value="username123" disabled>
+                        <input type="text" class="form-control" id="username" value="<?php echo $row['username']; ?>" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">电子邮箱</label>
-                        <input type="email" class="form-control" id="email" value="user@example.com" disabled>
+                        <input type="email" class="form-control" id="email" value="<?php echo $row['email']; ?>" disabled>
                     </div>
                 </form>
             </div>
             <div class="col-md-6">
-                <form class="profile-form form-sample">
+                <form class="profile-form form-sample" action="/scripts/ProfileUpdate.php" method="post">
                     <div class="mb-3">
-                        <label for="username" class="form-label">用户名</label>
-                        <input type="text" class="form-control" id="username" value="username123" disabled>
+                        <label class="form-label">性别</label>
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" <?php if($row['gender']=="male") echo "checked";?>>
+                                    <label class="form-check-label" for="male">男</label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female" <?php if($row['gender']=="female") echo "checked";?>>
+                                    <label class="form-check-label" for="female">女</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">电子邮箱</label>
-                        <input type="email" class="form-control" id="email" value="user@example.com" disabled>
+                        <label for="phone_number" class="form-label">手机号码</label>
+                        <input type="text" class="form-control" name="phone_number" value="<?php echo $row['phone_number']; ?>">
                     </div>
-                    <div class="mb-3">
-                        <label for="fullname" class="form-label">昵称</label>
-                        <input type="text" class="form-control" id="fullname" value="">
+                    <div class="row">
+                        <P>所处地</p>
+                        <div class="col-md-6 mb-3">
+                            <label for="province" class="form-label">省份</label>
+                            <input type="text" class="form-control" name="province" value="<?php echo $row['province'];?>">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="city" class="form-label">城市</label>
+                            <input type="text" class="form-control" name="city" value="<?php echo $row['city'];?>">
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="bio" class="form-label">简介</label>
-                        <textarea class="form-control" id="bio" rows="3">没有介绍...</textarea>
+                        <textarea class="form-control" id="bio" name="bio" rows="3"><?php echo $row['bio']?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">更新</button>
                 </form>
@@ -69,5 +107,6 @@
     </div>
 
     <?php include("../includes/footer.html"); ?>
+    <script src="/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

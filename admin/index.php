@@ -1,70 +1,62 @@
-<?php
-session_start();
-if (isset($_COOKIE['AdminName'])) {
-    $_SESSION['AdminName'] = $_COOKIE['AdminName']; 
-    header("location:dashboard.php");
-}
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="NULLA">
-    <title>管理员</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员登录-Valley</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <style>
-        html,
-        body {
-            height: 100%;
+        .centered-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+            padding: 20px; 
         }
-        .form-signin {
-            max-width: 330px;
-            padding: 1rem;
+        .form-group {
+            margin-bottom: 15px;
         }
-        .form-signin .form-floating:focus-within {
-            z-index: 2;
-        }
-
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
         }
 
-        .form-signin input[type="password"] {
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .card {
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-cancel {
             margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
         }
     </style>
 </head>
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    </svg>
-    <main class="form-signin w-100 m-auto">
-        <form action="AdminLogin.php" method="POST">
-            <h1 class="h3 mb-3 fw-normal">管理员登录</h1>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="username">
-                <label for="floatingInput">用户名</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" name="password">
-                <label for="floatingPassword">密码</label>
-            </div>
-            <div class="form-check text-start my-3">
-                <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    记住密码
-                </label>
-            </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">验证</button>
-        </form>
-    </main>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+<body>
+
+<div class="centered-form">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">管理员登录</h4>
+            <form class="profile-form" method="post" action="AdminLogin.php">
+                
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" id="exampleInputUsername1" name="admin_name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">密码</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">提交</button>
+                <button class="btn btn-light" type="reset">重置</button>
+                <div style="height: 10px;"></div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -26,7 +26,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
     <h1 class="display-4">Valley</h1>
-    <p class="lead">江苏大学同性交友平台</p>
+    <p class="lead">标记</p>
   </div>
 </div>
 
