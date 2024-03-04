@@ -51,12 +51,12 @@
                     </div>
                 <?php } ?>
                 <div class="form-group">
-                    <label for="exampleInputUsername1">用户名</label>
-                    <input type="text" class="form-control" id="exampleInputUsername1" name="username">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">密码</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
 
                 <button type="submit" class="btn btn-primary mr-2">提交</button>

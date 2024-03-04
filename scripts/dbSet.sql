@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.6.16-MariaDB, for debian-linux-gnu (x86_64)
+-- MariaDB dump 10.19  Distrib 10.11.6-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: valley
 -- ------------------------------------------------------
--- Server version	10.6.16-MariaDB-0ubuntu0.22.04.1
+-- Server version	10.11.6-MariaDB-0+deb12u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,10 +26,33 @@ CREATE TABLE `admins` (
   `admin_id` int(11) NOT NULL AUTO_INCREMENT,
   `admin_name` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
-  `lastLogin` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `createdAt` timestamp NULL DEFAULT current_timestamp(),
+  `lastLogin` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `comment_content` text NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `likes` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`comment_id`),
+  KEY `fk_post_id` (`post_id`),
+  KEY `fk_user_id` (`user_id`),
+  CONSTRAINT `fk_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,16 +68,17 @@ CREATE TABLE `posts` (
   `content` text DEFAULT NULL,
   `author` varchar(100) DEFAULT NULL,
   `author_id` int(11) DEFAULT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_modified_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `creation_date` timestamp NULL DEFAULT current_timestamp(),
+  `last_modified_date` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `category` varchar(50) DEFAULT NULL,
   `tags` varchar(255) DEFAULT NULL,
   `likes` int(11) DEFAULT 0,
   `comments` int(11) DEFAULT 0,
   `province` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
+  `views` int(11) DEFAULT NULL,
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,9 +97,10 @@ CREATE TABLE `users` (
   `gender` enum('male','female') DEFAULT NULL,
   `province` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `bio` text DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -87,4 +112,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-27 23:16:46
+-- Dump completed on 2024-03-04 14:02:14

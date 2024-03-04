@@ -36,9 +36,12 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">信息</h5>
+                        <h5 class="card-title">信息</h5><hr>
                         <p class="card-text">作者：<?php echo $row_post['author']; ?></p>
                         <p class="card-text">发布日期：<?php echo $row_post['creation_date']; ?></p>
+                        <p class="card-text">浏览数：<?php echo $row_post['views']; ?></p>
+                        <p class="card-text">点赞数：<?php echo $row_post['likes']; ?></p>
+                        <p class="card-text">标签：<?php echo $row_post['tags']; ?></p>
                     </div>
                 </div>
             </div>
@@ -46,7 +49,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $row_post['title']; ?></h5>
+                        <h5 class="card-title"><?php echo $row_post['title']; ?></h5><hr>
                         <p class="card-text"><?php echo $row_post['content']; ?></p>
                     </div>
                 </div>
