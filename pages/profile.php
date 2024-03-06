@@ -3,110 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>资料-Valley</title>
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/styles.css"> <!-- 自定义样式表 -->
+    <title>用户详情</title>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .profile-form {
-            background-color: #fff; /* 设置背景颜色为白色 */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
-        }
-        .profile-form input[type="text"],
-        .profile-form input[type="email"],
-        .profile-form textarea {
-            color: #000; /* 设置文本颜色为黑色 */
-            background-color: #fff; /* 设置背景颜色为白色 */
-            border: 1px solid #ced4da; /* 添加边框样式 */
-        }
+        /* 自定义样式 */
     </style>
 </head>
 <body>
+
     <?php
-    include("../includes/header.php");
     require_once("../scripts/dbConnect.php");
-    if (!isset($_SESSION['user_id'])) {
-        header("location:login.php");
-        exit;
-    }
     $conn = dbConnect();
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT * FROM users WHERE user_id=$user_id";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
+
+    $user_id = $_GET['id'];
+
+    // 查询用户信息
+    $sql = "SELECT * FROM users WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc())
     ?>
 
+    <!-- Bootstrap导航栏 -->
+    <?php include('../includes/header.php'); ?>
+
     <div class="container mt-5">
-        <?php if (isset($_GET['msg'])) { ?>
-            <div class="alert alert-dismissible fade show" role="alert">
-                <?php echo $_GET['msg']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
-        <h2>用户信息</h2>
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <form class="profile-form form-sample">
-                    <div class="mb-3">
-                        <label for="fullname" class="form-label">用户ID</label>
-                        <input type="text" class="form-control" id="UserID" value="<?php echo $row['user_id']; ?>" disabled>
+        <div class="card shadow-sm">
+            <div class="row no-gutters">
+                <!-- 主要内容区域 -->
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <!-- 用户详细信息不变... -->
                     </div>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">用户名</label>
-                        <input type="text" class="form-control" id="username" value="<?php echo $row['username']; ?>" disabled>
+                </div>
+
+                <!-- 侧栏区域 -->
+                <div class="col-md-4">
+                    <div class="card-body bg-light p-3">
+                        <h6 class="card-title">用户统计信息</h6>
+                        <ul class="list-unstyled">
+                            <li><strong>注册日期:</strong> <?php echo date('Y-m-d', strtotime($row['created_at'])); ?></li>
+                            <li><strong>发帖数量:</strong> <?php echo getPostCountByUserId($row['user_id']); ?></li>
+                            <li><strong>评论数量:</strong> <?php echo getCommentCountByUserId($row['user_id']); ?></li>
+                            <!-- 其他统计信息 -->
+                        </ul>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">电子邮箱</label>
-                        <input type="email" class="form-control" id="email" value="<?php echo $row['email']; ?>" disabled>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <form class="profile-form form-sample" action="/scripts/ProfileUpdate.php" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">性别</label>
-                        <div class="row">
-                            <div class="col-auto">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" <?php if($row['gender']=="male") echo "checked";?>>
-                                    <label class="form-check-label" for="male">男</label>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female" <?php if($row['gender']=="female") echo "checked";?>>
-                                    <label class="form-check-label" for="female">女</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone_number" class="form-label">手机号码</label>
-                        <input type="text" class="form-control" name="phone_number" value="<?php echo $row['phone_number']; ?>">
-                    </div>
-                    <div class="row">
-                        <P>所处地</p>
-                        <div class="col-md-6 mb-3">
-                            <label for="province" class="form-label">省份</label>
-                            <input type="text" class="form-control" name="province" value="<?php echo $row['province'];?>">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="city" class="form-label">城市</label>
-                            <input type="text" class="form-control" name="city" value="<?php echo $row['city'];?>">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="bio" class="form-label">简介</label>
-                        <textarea class="form-control" id="bio" name="bio" rows="3"><?php echo $row['bio']?></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">更新</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <?php include("../includes/footer.html"); ?>
+    <?php
+    $stmt->close();
+    $conn->close();
+    include("../includes/footer.html"); 
+    ?>
+
     <script src="/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

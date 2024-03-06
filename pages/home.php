@@ -7,30 +7,8 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css"> <!-- 自定义样式表 -->
     <style>
-        body {
-            color: #fff; /* 设置文本颜色为白色 */
-            background-color: #000; /* 设置背景颜色为黑色 */
-        }
         .card {
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .profile-form {
-            background-color: #000; /* 设置背景颜色为黑色 */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
-        }
-        .profile-form input[type="text"],
-        .profile-form input[type="email"],
-        .profile-form textarea {
-            color: #000; /* 设置文本颜色为白色 */
-            background-color: #fff; /* 设置背景颜色为黑色 */
-            border: 1px solid #fff; /* 设置边框颜色为白色 */
-        }
-        .list-group-item {
-            color: #000 !important; /* 设置列表项文本颜色为白色 */
-            background-color: #fff !important; /* 设置列表项背景颜色为黑色 */
-            border-color: #000 !important; /* 设置列表项边框颜色为白色 */
         }
         .list-group-item:hover {
             background-color: #f0f8ff !important;

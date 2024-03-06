@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>主页</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <style>
     body {
       background-color: #f8f9fa;
     }
     .navbar {
-      background-color: #343a40 !important;
+      background-color: #343a40;
     }
     .jumbotron {
-      background-image: url('https://via.placeholder.com/1500x500') !important;
-      background-size: cover;
-      color: #fff;
+      height: 520px;
+      background-image: url('');
+      background-size: 100%;
+      background-position: 50% 65%;
+      color: #000;
     }
   </style>
 </head>
@@ -25,7 +27,7 @@
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
-    <h1 class="display-4">Valley</h1>
+    <h1 class="display-3">Valley</h1>
     <p class="lead">标记</p>
   </div>
 </div>

@@ -76,7 +76,7 @@ CREATE TABLE `posts` (
   `comments` int(11) DEFAULT 0,
   `province` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
-  `views` int(11) DEFAULT NULL,
+  `views` int(11) DEFAULT 0,
   PRIMARY KEY (`post_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

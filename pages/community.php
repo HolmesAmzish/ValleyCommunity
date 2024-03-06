@@ -1,32 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>社区</title>
+    <title>社区-Valley</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/styles.css"> <!-- 自定义样式表 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <style>
-        body {
-            color: #000; 
-            background-color: #fff; 
-        }
         .card {
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-label {
-            color: #fff;
-        }
-        .form-select {
-            color: #000;
-            background-color: #fff; /* 修改背景颜色为白色 */
-            border: 1px solid #fff;
-        }
-        .list-group-item {
-            color: #000 !important;
-            background-color: #fff !important;
-            border-color: #000 !important;
         }
         .list-group-item:hover {
             background-color: #f0f8ff !important;
@@ -38,7 +21,12 @@
     include("../includes/header.php");
     require_once("../scripts/dbConnect.php");
     $conn = dbConnect();
-    $sql = "SELECT * FROM posts ORDER BY creation_date DESC";
+    if (isset($_GET['key'])) {
+        $key = trim($_GET['key']);
+        $sql = "SELECT * FROM posts WHERE content LIKE '%$key%' or title LIKE '%$key%' or tags LIKE '%$key%' or author LIKE '%$key%'";
+    } else {
+        $sql = "SELECT * FROM posts ORDER BY creation_date DESC";
+    }
     $result = $conn->query($sql);
     ?>
 
@@ -71,8 +59,11 @@
                 <!-- 帖子列表 -->
                 <div class="row mt-4">
                     <div class="col-md-12">
+                        <form class="d-flex mb-3" action="" method="GET">
+                            <input type="text" name="key" value="<?php echo isset($_GET['key']) ? htmlspecialchars($_GET['key']) : ''; ?>" class="form-control me-2" placeholder="搜索帖子...">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                        </form>
                         <ul class="list-group">
-                            <!-- 示例帖子 -->
                             <?php
                             require("../scripts/timespan.php");
                             while ($row = $result->fetch_assoc()) {

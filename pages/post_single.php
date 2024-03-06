@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>查看帖子</title>
+    <title>查看-Valley</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
         .card {
@@ -27,6 +27,9 @@
     $sql_post = "SELECT * FROM posts WHERE post_id=$post_id";
     $result = $conn->query($sql_post);
     $row_post = $result->fetch_assoc();
+
+    // add views
+    $conn->query("UPDATE posts SET views = views + 1 WHERE post_id=$post_id");
     
     ?>
 
@@ -68,7 +71,7 @@
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h6 class="mb-0"><?php echo $row_comment['username']; ?></h6>
+                                        <h6 class="mb-0"><?php echo $row_comment['username'] . ":"; ?></h6>
                                     </div>
                                     <small class="text-muted"><?php echo "点赞 " . $row_comment['likes'] . " | " . date("Y-m-d H:i", $comment_date); ?></small>
                                 </div>

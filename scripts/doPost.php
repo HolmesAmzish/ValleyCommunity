@@ -7,9 +7,9 @@ $conn = dbConnect();
 
 // 确保标题、内容和作者字段都存在且不为空
 if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_SESSION['username'])) {
-    $sql = "INSERT INTO posts (title, content, author) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO posts (title, content, author, tags) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $_POST['title'], $_POST['content'], $_SESSION['username']);
+    $stmt->bind_param("ssss", $_POST['title'], $_POST['content'], $_SESSION['username'], $_POST['tags']);
     $result = $stmt->execute();
     
     if ($result) {

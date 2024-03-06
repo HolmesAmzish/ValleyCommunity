@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于</title>
+    <title>关于-Valley</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
         /* Custom styles for this page */
