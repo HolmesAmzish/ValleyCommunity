@@ -6,6 +6,5 @@
     <title>Valley-管理员面板</title>
 </head>
 <body>
-    <?php include_once("../includes/sidebar.php"); ?>
 </body>
 </html>

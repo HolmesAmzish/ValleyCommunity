@@ -17,19 +17,30 @@
     </style>
 </head>
 <body>
-    <?php 
+    <?php
     include("../includes/header.php");
     require_once("../scripts/dbConnect.php");
     $conn = dbConnect();
-    if (isset($_GET['key'])) {
-        $key = trim($_GET['key']);
-        $sql = "SELECT * FROM posts WHERE content LIKE '%$key%' or title LIKE '%$key%' or tags LIKE '%$key%' or author LIKE '%$key%'";
-    } else {
-        $sql = "SELECT * FROM posts ORDER BY creation_date DESC";
-    }
-    $result = $conn->query($sql);
-    ?>
 
+    // Pagination
+    $rowsPerPage = 10;
+    $page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
+    $start = ($page - 1) * $rowsPerPage;
+
+    // Count total rows
+    $countQuery = "SELECT COUNT(*) AS total FROM posts";
+    $countResult = $conn->query($countQuery);
+    $totalRows = $countResult->fetch_assoc()['total'];
+    $totalPages = ceil($totalRows / $rowsPerPage);
+
+    // SQL Query
+    $sql = "SELECT * FROM posts ORDER BY creation_date DESC LIMIT ?, ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $start, $rowsPerPage);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    ?>
+    
     <div class="container mt-5">
         <!-- 显示信息 -->
         <?php if (isset($_GET['msg'])) { ?>
@@ -55,7 +66,6 @@
                         </select>
                     </div>
                 </div>
-
                 <!-- 帖子列表 -->
                 <div class="row mt-4">
                     <div class="col-md-12">
@@ -78,10 +88,30 @@
                                 <small>By <?php echo $row['author']; ?></small>
                             </a>
                             <?php } ?>
-                            <!-- 其他帖子 -->
                         </ul>
                     </div>
                 </div>
+                <!-- Pagination -->
+                <?php
+                $stmt->close();
+
+                if ($totalPages > 1) {
+                    echo "<div class='row mt-3'><div class='col-md-12'>";
+                    echo "<nav aria-label='Page navigation'><ul class='pagination justify-content-center'>";
+                    
+                    $first = "<li class='page-item'><a class='page-link' href='?page=1" . (isset($_GET['key']) ? "&key=" . urlencode($_GET['key']) : '') . "'>首页</a></li>";
+                    $last = "<li class='page-item'><a class='page-link' href='?page=$totalPages" . (isset($_GET['key']) ? "&key=" . urlencode($_GET['key']) : '') . "'>末页</a></li>";
+                    $pre = ($page > 1) ? "<li class='page-item'><a class='page-link' href='?page=".($page - 1) . (isset($_GET['key']) ? "&key=" . urlencode($_GET['key']) : '') . "'>上一页</a></li>" : '';
+                    $next = ($page < $totalPages) ? "<li class='page-item'><a class='page-link' href='?page=".($page + 1) . (isset($_GET['key']) ? "&key=" . urlencode($_GET['key']) : '') . "'>下一页</a></li>" : '';
+
+                    echo $first . $pre;
+                    for ($i = 1; $i <= $totalPages; $i++) {
+                        echo "<li class='page-item " . ($i == $page ? 'active' : '') . "'><a class='page-link' href='?page=$i" . (isset($_GET['key']) ? "&key=" . urlencode($_GET['key']) : '') . "'>$i</a></li>";
+                    }
+                    echo $next . $last;
+                    echo "</ul></nav></div></div>";
+                }
+                ?>
             </div>
             <div class="col-md-4">
                 <!-- 侧栏 -->
@@ -99,6 +129,6 @@
     </div>
 
     <?php include("../includes/footer.html"); ?>
+    <script src="/assets/js/bootstrap.min.js"></script>
 </body>
-<script src="/assets/js/bootstrap.min.js"></script>
 </html>
