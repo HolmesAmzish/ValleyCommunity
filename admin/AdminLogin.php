@@ -16,9 +16,6 @@ if (isset($_POST['admin_name']) && isset($_POST['password'])) {
             $_SESSION['admin_name'] = $admin_name;
             header("location: dashboard.php");
             exit;
-        } else {
-            header("location: index.php?msg=用户名或密码错误！");
-            exit;
         }
     } else {
         header("location: index.php?msg=用户名或密码错误！");

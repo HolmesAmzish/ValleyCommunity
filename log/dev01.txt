@@ -1,6 +1,6 @@
 2024.2.27
 1. 修改SQL数据库结构和导出导入
-mysqldump -u root -p --no-data valley > dbSet.sql
+mysqldump -u root -p --no-data valley > /var/www/val.arorms.cn/scripts/dbSet.sql
 mysql -u root -p valley < dbSet.sql
 2. 重构dev02分支
 
