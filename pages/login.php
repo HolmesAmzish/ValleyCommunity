@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_COOKIE['username'])) {
+    $_SESSION['username'] = $_COOKIE['username'];
+    header("location:home.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +17,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; 
-            padding: 20px; 
+            height: 100vh;
+            padding: 20px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -58,7 +65,10 @@
                     <label for="password">密码</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
-
+                <div class="form-group form-check mt-3">
+                    <input type="checkbox" class="form-check-input" id="isAuto" name="isAuto" value="1">
+                    <label class="form-check-label" for="isAuto">记住密码</label>
+                </div>
                 <button type="submit" class="btn btn-primary mr-2">提交</button>
                 <button class="btn btn-light" type="reset">重置</button>
                 <div style="height: 10px;"></div>
