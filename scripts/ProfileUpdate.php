@@ -24,11 +24,11 @@ $stmt->execute();
 // 检查更新结果并进行相应处理
 if ($stmt->affected_rows > 0) {
     $update_msg = "更新成功";
-    header("location:../pages/profile.php?msg=$update_msg");
+    header("location:../pages/profile.php?uid=$user_id&msg=$update_msg");
     exit;
 } else {
     $update_error = "更新失败";
-    header("location:../pages/profile.php?msg=$update_error");
+    header("location:../pages/profile.php?uid=$user_id&msg=$update_error");
     exit;
 }
 
