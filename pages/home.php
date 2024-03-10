@@ -51,8 +51,16 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <!-- 侧边栏内容 -->
-                <h3 class="mt-5">侧边栏</h3>
+            <!-- 侧边 -->
+            <h3 class="mt-5">侧栏</h3>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">树洞</h5>
+                        <p class="card-text">Learn more about our community forum and its mission.</p>
+                        <a href="/pages/echo.php" class="btn btn-primary">查看</a>
+                    </div>
+                </div>
+
                 <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title">About Us</h5>
@@ -60,7 +68,6 @@
                         <a href="/pages/about.php" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
-                <!-- 其他侧边栏内容 -->
             </div>
         </div>
     </div>

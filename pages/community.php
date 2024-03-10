@@ -53,19 +53,6 @@
         <div class="row">
             <div class="col-md-8">
                 <h2>社区</h2>
-                <!-- 筛选选项栏 -->
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <label for="provinceSelect" class="form-label">选择省份</label>
-                        <select class="form-select" id="provinceSelect">
-                            <option selected>选择省份</option>
-                            <option>江苏</option>
-                            <option>安徽</option>
-                            <option>浙江</option>
-                            <!-- 其他省份选项 -->
-                        </select>
-                    </div>
-                </div>
                 <!-- 帖子列表 -->
                 <div class="row mt-4">
                     <div class="col-md-12">
@@ -123,7 +110,13 @@
                         <a href="/pages/post.php" class="btn btn-primary">发布</a>
                     </div>
                 </div>
-                <!-- 其他侧栏内容 -->
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">树洞</h5>
+                        <p class="card-text">Learn more about our community forum and its mission.</p>
+                        <a href="/pages/echo.php" class="btn btn-primary">前往树洞</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ if(isset($_SESSION['username'])) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <style>
   .bd-placeholder-img {
     font-size: 1.125rem;
@@ -57,7 +57,7 @@ if(isset($_SESSION['username'])) {
   <ul class="nav zh">
     <li><a href="/pages/home.php" class="nav-link px-2 link-secondary">主页</a></li>
     <li><a href="/pages/community.php" class="nav-link px-2">社区</a></li>
-    <li><a href="/pages/about.php" class="nav-link px-2">关于</a></li>
+    <li><a href="/pages/echo.php" class="nav-link px-2">树洞</a></li>
   </ul>
   <div class="col-md-3 text-end zh">
     <?php if(isset($username)): ?>
@@ -65,11 +65,9 @@ if(isset($_SESSION['username'])) {
         <button type="button" class="btn btn-outline-primary ms-2" onclick="window.location.href='../scripts/logout.php'">登出</button>
     <?php else: ?>
       <button type="button" class="btn btn-outline-primary me-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/login.php';">登录</button>
-        <button type="button" class="btn btn-primary mr-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/register.php';">注册</button>
+      <button type="button" class="btn btn-primary mr-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/register.php';">注册</button>
     <?php endif; ?>
   </div>
 </header>
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/css@3"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

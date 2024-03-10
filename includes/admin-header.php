@@ -28,10 +28,10 @@ session_start();
                     <a class="nav-link  text-white" href="PostList.php">文章列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  text-white" href="commentlist.php">评论列表</a>
+                    <a class="nav-link  text-white" href="CommentList.php">评论列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="echolist.php">活动列表</a>
+                    <a class="nav-link text-white" href="echoList.php">树洞列表</a>
                 </li>
             </ul>
         </div>
