@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['username'])) {
   $username = $_SESSION['username'];
+  $user_id = $_SESSION['user_id'];
   $displayButtons = 'style="display: none;"';
 } else {
   $displayButtons = '';
@@ -60,7 +61,7 @@ if(isset($_SESSION['username'])) {
   </ul>
   <div class="col-md-3 text-end zh">
     <?php if(isset($username)): ?>
-        <span><?php echo "你好，<a href='/pages/profile.php?user=$username'>$username</a>"; ?></span>
+        <span><?php echo "你好，<a href='/pages/profile.php?uid=$user_id'>$username</a>"; ?></span>
         <button type="button" class="btn btn-outline-primary ms-2" onclick="window.location.href='../scripts/logout.php'">登出</button>
     <?php else: ?>
       <button type="button" class="btn btn-outline-primary me-2" <?php echo $displayButtons; ?> onclick="window.location.href='/pages/login.php';">登录</button>

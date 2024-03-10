@@ -15,7 +15,7 @@ if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_SESSION['us
     if ($result) {
         $post_id = $stmt->insert_id;
         $post_msg = "发送成功";
-        header("location:../pages/post_single.php?id=$post_id&msg=$post_msg");
+        header("location:../pages/post_single.php?pid=$post_id&msg=$post_msg");
         exit;
     } else {
         $post_error = "发送失败";

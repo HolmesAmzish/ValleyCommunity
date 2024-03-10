@@ -4,7 +4,7 @@ require_once("../scripts/dbConnect.php");
 $conn = dbConnect();
 
 $admin_name = "Nulla";
-$password = "Z*9ZZ9";
+$password = "123";
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $stmt = $conn->prepare("INSERT INTO admins (admin_name, password) VALUES (?, ?)");

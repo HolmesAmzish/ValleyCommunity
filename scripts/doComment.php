@@ -15,7 +15,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("iiss", $post_id, $user_id, $username, $content);
 
 if ($stmt->execute()) {
-    header("location:../pages/post_single.php?id=$post_id");
+    header("location:../pages/post_single.php?pid=$post_id");
     exit;
 } else {
     die("发送评论时出错：" . $conn->error);
