@@ -1,1 +1,0 @@
-mysql -u root -p Database.sql
