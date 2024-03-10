@@ -1,8 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin_name'])) {
-    header("location:index.php?msg=Unknow admin");
-}
+require_once("../includes/adminCheck.php");
 
 require_once("../scripts/dbConnect.php");
 $conn = dbConnect();

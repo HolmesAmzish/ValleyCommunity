@@ -113,7 +113,7 @@
                 <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title">树洞</h5>
-                        <p class="card-text">Learn more about our community forum and its mission.</p>
+                        <p class="card-text">分享个人心得、疑惑或情绪体验。通过此功能，用户可匿名发表内容，获得来自社区的理解与支持。</p>
                         <a href="/pages/echo.php" class="btn btn-primary">前往树洞</a>
                     </div>
                 </div>
