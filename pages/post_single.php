@@ -21,12 +21,15 @@
     include("../includes/header.php");
     require_once("../scripts/dbConnect.php");
     $conn = dbConnect();
-    $post_id = $_GET['id'];
+    $post_id = $_GET['pid'];
 
     // Post information
-    $sql_post = "SELECT * FROM posts WHERE post_id=$post_id";
-    $result = $conn->query($sql_post);
-    $row_post = $result->fetch_assoc();
+    $sql = "SELECT p.*, u.*
+                FROM posts p
+                JOIN users u ON p.author = u.username
+                WHERE p.post_id = $post_id;";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
 
     // add views
     $conn->query("UPDATE posts SET views = views + 1 WHERE post_id=$post_id");
@@ -40,11 +43,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">信息</h5><hr>
-                        <p class="card-text">作者：<?php echo $row_post['author']; ?></p>
-                        <p class="card-text">发布日期：<?php echo $row_post['creation_date']; ?></p>
-                        <p class="card-text">浏览数：<?php echo $row_post['views']; ?></p>
-                        <p class="card-text">点赞数：<?php echo $row_post['likes']; ?></p>
-                        <p class="card-text">标签：<?php echo $row_post['tags']; ?></p>
+                        <p class="card-text">作者：<a href="profile.php?uid=<?php echo $row['user_id']; ?>"><?php echo $row['author']; ?></a></p>
+                        <p class="card-text">发布日期：<?php echo $row['creation_date']; ?></p>
+                        <p class="card-text">浏览数：<?php echo $row['views']; ?></p>
+                        <p class="card-text">点赞数：<?php echo $row['likes']; ?></p>
+                        <p class="card-text">标签：<?php echo $row['tags']; ?></p>
                     </div>
                 </div>
             </div>
@@ -52,8 +55,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $row_post['title']; ?></h5><hr>
-                        <p class="card-text"><?php echo $row_post['content']; ?></p>
+                        <h5 class="card-title"><?php echo $row['title']; ?></h5><hr>
+                        <p class="card-text"><?php echo $row['content']; ?></p>
                     </div>
                 </div>
                 <!-- comments -->

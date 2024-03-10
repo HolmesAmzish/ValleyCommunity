@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户列表-Valley</title>
+    <title>文章列表-Valley</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
         body {
@@ -24,7 +24,7 @@
     // 数据库查询
     require_once("../scripts/dbConnect.php");
     $conn = dbConnect();
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM posts";
     $result = $conn->query($sql);
     ?>
     <div class="container-fluid">
@@ -34,10 +34,10 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>用户ID</th>
-                            <th>用户名</th>
-                            <th>邮箱</th>
-                            <th>注册时间</th>
+                            <th>帖子ID</th>
+                            <th>标题</th>
+                            <th>作者</th>
+                            <th>发布时间</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,12 +45,11 @@
                         // 遍历数据库查询结果，将用户数据输出到表格中
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
-                            echo "<td>{$row['user_id']}</td>";
-                            echo "<td>{$row['username']}</td>";
-                            echo "<td>{$row['email']}</td>";
-                            echo "<td>{$row['created_at']}</td>";
-                            echo "<td><a href='UserEdit.php?uid={$row['user_id']}' class='btn btn-light'>编辑</a>";
-                            echo "<a href='UserDelete.php?uid={$row['user_id']}' class='btn btn-primary' onclick=\"return confirm('确认删除')\">删除</a></td>";
+                            echo "<td>{$row['post_id']}</td>";
+                            echo "<td><a href='/pages/post_single.php?pid={$row['post_id']}'>{$row['title']}</a></td>";
+                            echo "<td>{$row['author']}</td>";
+                            echo "<td>{$row['creation_date']}</td>";
+                            echo "<td><a href='PostDelete.php?pid={$row['post_id']}' class='btn btn-primary' onclick=\"return confirm('确认删除')\">删除</a></td>";
                             echo "</tr>";
                         }
                         ?>

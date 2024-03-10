@@ -17,6 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashedPassword = $row['password'];
 
         if (password_verify($password, $hashedPassword)) {
+            if ($_POST['isAuto']) {
+                setcookie("username", $username, time() + 60 * 60 * 24 * 30);
+                setcookie("user_id", $user_id, time() + 60 * 60 * 24 *30);
+            }
             $_SESSION['username'] = $username;
             $_SESSION['user_id'] = $row['user_id'];
             header("location:../pages/home.php");
