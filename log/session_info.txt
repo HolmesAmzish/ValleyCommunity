@@ -1,9 +1,2 @@
-header.php
-- $_SESSION['username']
-
 doLogin.php
-- $_SESSION['login_error']
-
-doPost.php
-- $_SESSION['post_error']
-- $_SESSION['post_error']
+登陆完成后自动设置SESSION username和user_id

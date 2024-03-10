@@ -79,7 +79,7 @@
                             while ($row = $result->fetch_assoc()) {
                                 $time_span = time_span($row['creation_date']);
                             ?>
-                            <a href="post_single.php?id=<?php echo $row['post_id']; ?>" class="list-group-item list-group-item-action">
+                            <a href="post_single.php?pid=<?php echo $row['post_id']; ?>" class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $row['title']; ?></h5>
                                     <small><?php echo $time_span; ?></small>

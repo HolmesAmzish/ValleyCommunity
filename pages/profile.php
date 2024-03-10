@@ -10,17 +10,22 @@
     </style>
 </head>
 <body>
-<?php include('../includes/header.php'); ?>
-<?php
+<?php 
+include('../includes/header.php');
+if (!isset($_SESSION['username'])) {
+    header("location:login.php?msg=请先登录");
+}
+
+
 require_once("../scripts/dbConnect.php");
 $conn = dbConnect();
 
-$username = $_GET['user'];
+$user_id = $_GET['uid'];
 
 // 查询用户基本信息
-$sql = "SELECT * FROM users WHERE username = ?";
+$sql = "SELECT * FROM users WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $username);
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -33,7 +38,6 @@ if ($row = $result->fetch_assoc()) {
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
             <h3 class="card-title"><?php echo htmlspecialchars($row['username']); ?> 详细信息</h3>
-
         </div>
         <div class="card-body">
             <div class="row">
@@ -54,7 +58,7 @@ if ($row = $result->fetch_assoc()) {
                 
             </div>
             <?php
-            if ($_SESSION['username'] == $username) {
+            if ($_SESSION['user_id'] == $user_id) {
                 echo "<a href='profileEdit.php' class='btn btn-light'>编辑</a>";
             }
             ?>
