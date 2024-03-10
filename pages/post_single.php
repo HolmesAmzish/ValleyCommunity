@@ -24,11 +24,13 @@
     $post_id = $_GET['pid'];
 
     // Post information
-    $sql = "SELECT p.*, u.*
+    $stmt = $conn->prepare("SELECT p.*, u.*
                 FROM posts p
                 JOIN users u ON p.author = u.username
-                WHERE p.post_id = $post_id;";
-    $result = $conn->query($sql);
+                WHERE p.post_id = ?");
+    $stmt->bind_param("i", $post_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
     // add views
@@ -66,9 +68,11 @@
                         <!-- 评论列表 -->
                         <ul class="list-group">
                             <?php
-                            $sql_comment = "SELECT * FROM comments WHERE post_id=$post_id";
-                            $result_comments = $conn->query($sql_comment);
-                            while ($row_comment = $result_comments->fetch_assoc()) {
+                            $stmt_comment = $conn->prepare("SELECT * FROM comments WHERE post_id=?");
+                            $stmt_comment->bind_param("i", $post_id);
+                            $stmt_comment->execute();
+                            $result_comment = $stmt_comment->get_result();
+                            while ($row_comment = $result_comment->fetch_assoc()) {
                                 $comment_date = strtotime($row_comment['comment_date']);
                             ?>
                             <li class="list-group-item">
