@@ -15,37 +15,49 @@ if(isset($_SESSION['username'])) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+  body {
+      background-color: #fff;
+      color: #000;
+  }  .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+  }  @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+      }
   }
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-  .bi {
-    vertical-align: -.125em;
-    fill: currentColor;
-  }
-  .zh {
-    font-weight: bolder;
-    font-size: larger;
+  .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+  }  .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
   }
   .container-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+  }  .col-md-3.text-end.zh {
+      text-align: center;
+      margin-top: 10px;
   }
-  .col-md-3.text-end.zh {
-    text-align: center;
-    margin-top: 10px;
+  .footer-links a {
+      color: #000;
+      text-decoration: none;
   }
-</style>
+  </style>
 </head>
 <body>
 <header class="container-header container py-3 mb-4 border-bottom">
@@ -55,9 +67,9 @@ if(isset($_SESSION['username'])) {
     </a>
   </div>
   <ul class="nav zh">
-    <li><a href="/pages/home.php" class="nav-link px-2 link-secondary">主页</a></li>
-    <li><a href="/pages/community.php" class="nav-link px-2">社区</a></li>
-    <li><a href="/pages/echo.php" class="nav-link px-2">树洞</a></li>
+    <li><a href="/pages/home.php" class="nav-link px-3 link-secondary">主页</a></li>
+    <li><a href="/pages/community.php" class="nav-link px-3">社区</a></li>
+    <li><a href="/pages/echo.php" class="nav-link px-3">树洞</a></li>
   </ul>
   <div class="col-md-3 text-end zh">
     <?php if(isset($username)): ?>
