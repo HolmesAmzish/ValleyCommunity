@@ -44,6 +44,10 @@ if(isset($_SESSION['username'])) {
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
   }
+  .ttt {
+    font-size: 2em;
+    font-weight: bold;
+  }
   .container-header {
       display: flex;
       align-items: center;
@@ -67,9 +71,9 @@ if(isset($_SESSION['username'])) {
     </a>
   </div>
   <ul class="nav zh">
-    <li><a href="/pages/home.php" class="nav-link px-3 link-secondary">主页</a></li>
-    <li><a href="/pages/community.php" class="nav-link px-3">社区</a></li>
-    <li><a href="/pages/echo.php" class="nav-link px-3">树洞</a></li>
+    <li><a href="/pages/home.php" class="ttt nav-link px-3 link-dark">主页</a></li>
+    <li><a href="/pages/community.php" class="ttt nav-link px-3">社区</a></li>
+    <li><a href="/pages/echo.php" class="ttt nav-link px-3">树洞</a></li>
   </ul>
   <div class="col-md-3 text-end zh">
     <?php if(isset($username)): ?>
