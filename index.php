@@ -20,7 +20,7 @@
     <div class="p-5 mb-4 rounded-3 border">
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Valley - 社区</h1>
-        <p class="col-md-8 fs-4">欢迎来到山谷社区！我们运用Bootstrap组件和一系列实用工具，为您呈现了这一极具吸引力的焦点区域。您可以根据个人喜好自由定制其背景颜色与文本样式，轻松打造出与众不同的视觉效果。点击“前往主页”按钮，立即探索更多丰富内容！</p>
+        <p class="col-md-8 fs-4">欢迎来到山谷社区！这是我们为讨论和交流而组建的基本网站。点击“前往主页”按钮，立即探索更多丰富内容！我们不仅欢迎讨论计算机技术问题，也欢迎其他主题的讨论！</p>
         <a href="/pages/home.php" class="btn btn-primary btn-lg">前往主页</a>
       </div>
     </div>
