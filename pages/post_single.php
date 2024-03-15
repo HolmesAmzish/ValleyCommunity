@@ -58,7 +58,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row['title']; ?></h5><hr>
-                        <p class="card-text"><?php echo $row['content']; ?></p>
+                        <p class="card-text"><?php echo nl2br($row['content']); ?></p>
                     </div>
                 </div>
                 <!-- comments -->
