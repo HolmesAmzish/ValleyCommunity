@@ -3,8 +3,8 @@ session_start();
 require_once("../scripts/dbConnect.php");
 $conn = dbConnect();
 
-$admin_name = "Nulla";
-$password = "123";
+$admin_name = "admin";
+$password = "******";
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $stmt = $conn->prepare("INSERT INTO admins (admin_name, password) VALUES (?, ?)");
