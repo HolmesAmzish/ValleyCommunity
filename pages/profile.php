@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户详情-Valley</title>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* 自定义样式 */
-    </style>
 </head>
 <body>
 <?php 
